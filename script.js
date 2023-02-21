@@ -20,7 +20,7 @@ function generatePassword() {
     return;
   }
   // prompts user to choose character types for the password from four options, spliting the response into an array with the variable "charTypes"
-  let charTypes = prompt("Please choose the types of characters you want in your password (lowercase, uppercase, numbers, symbols), separated by commas.").split(",");
+  let charTypes = prompt("Please choose the types of characters you want in your password (lowercase, uppercase, numbers, symbols), separated by commas.").toLowerCase().split(",");
   // creates object "charSets", assigning a string of available characters for each character type
   let charSets = {
     lowercase: "abcdefghijklmnopqrstuvwxyz",
