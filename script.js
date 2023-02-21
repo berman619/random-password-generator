@@ -13,11 +13,17 @@ function writePassword() {
 
 // random password generator function
 function generatePassword() {
-  // prompts user to enter password length between 8 and 128 characters, with an alert for invalid responses
+  // prompts user to enter password length between 8 and 128 characters, with alerts for invalid responses and returns that restart the function
   let charcount = prompt("Please enter the password length (min. 8 characters, max. 128 characters)");
-  if (charcount < 8 || charcount > 128) {
-    alert("You entered a number that is outside the acceptable range. Please try again.");
-    return;
+  if (isNaN(charcount)) {
+    alert("That's not a number! Please try again.");
+    return generatePassword();
+  } else if (charcount < 8) {
+    alert("That's too short! Please enter a number between 8 and 128.");
+    return generatePassword();
+  } else if (charcount > 128) {
+    alert("That's too long! Please enter a number between 8 and 128.");
+    return generatePassword();
   }
   // prompts user to choose character types for the password from four options, spliting the response into an array with the variable "charTypes"
   let charTypes = prompt("Please choose the types of characters you want in your password (lowercase, uppercase, numbers, symbols), separated by commas.").toLowerCase().split(",");
@@ -38,8 +44,8 @@ function generatePassword() {
     if (charSets[trimmedType]) {
       availableChars += charSets[trimmedType];
     } else {
-      alert(`Invalid character type "${charType}". Please try again.`);
-      return;
+      alert(`Invalid character type "${charType}". Try again!`);
+      return generatePassword();
     }
   }
   // creates for loop that randomly selects charactrs from the "availableChars" string until the user's chosen length is reached
