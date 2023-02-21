@@ -15,7 +15,9 @@ function writePassword() {
 function generatePassword() {
   // prompts user to enter password length between 8 and 128 characters, with alerts for invalid responses and returns that restart the function
   let charcount = prompt("Please enter the password length (min. 8 characters, max. 128 characters)");
-  if (isNaN(charcount)) {
+  if (charcount === null) {
+    return;
+  } else if (isNaN(charcount)) {
     alert("That's not a number! Please try again.");
     return generatePassword();
   } else if (charcount < 8) {
